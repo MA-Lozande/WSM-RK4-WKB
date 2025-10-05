@@ -1,0 +1,568 @@
+% ****** Start of file aipsamp.tex ******
+%
+%   This file is part of the AIP files in the AIP distribution for REVTeX 4.
+%   Version 4.1 of REVTeX, October 2009
+%
+%   Copyright (c) 2009 American Institute of Physics.
+%
+%   See the AIP README file for restrictions and more information.
+%
+% TeX'ing this file requires that you have AMS-LaTeX 2.0 installed
+% as well as the rest of the prerequisites for REVTeX 4.1
+% 
+% It also requires running BibTeX. The commands are as follows:
+%
+%  1)  latex  aipsamp
+%  2)  bibtex aipsamp
+%  3)  latex  aipsamp
+%  4)  latex  aipsamp
+%
+% Use this file as a source of example code for your aip document.
+% Use the file aiptemplate.tex as a template for your document.
+\documentclass[%
+ aip,
+% jmp,
+% bmf,
+% sd,
+% rsi,
+ amsmath,amssymb,
+%preprint,%
+ reprint,%
+%author-year,%
+%author-numerical,%
+% Conference Proceedings
+]{revtex4-1}
+
+\usepackage{graphicx}% Include figure files
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+%\usepackage[mathlines]{lineno}% Enable numbering of text and display math
+%\linenumbers\relax % Commence numbering lines
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}
+\usepackage{etoolbox}
+
+%% Apr 2021: AIP requests that the corresponding 
+%% email to be moved after the affiliations
+\makeatletter
+\def\@email#1#2{%
+ \endgroup
+ \patchcmd{\titleblock@produce}
+  {\frontmatter@RRAPformat}
+  {\frontmatter@RRAPformat{\produce@RRAP{*#1\href{mailto:#2}{#2}}}\frontmatter@RRAPformat}
+  {}{}
+}%
+\makeatother
+\begin{document}
+
+\preprint{AIP/123-QED}
+
+\title[Wave packet propagation in tilted Weyl semimetals for black hole analog systems]{Wave packet propagation in tilted Weyl semimetals for black hole analog systems}
+% Force line breaks with \\
+\author{M. A. Lozande}
+ \altaffiliation{lozande.ma732@s.msumain.edu.ph}%Lines break automatically or can be forced with \\
+ 
+\author{E. A. Fajardo}%
+ \email{Second.Author@institution.edu.}
+\affiliation{ 
+Department of Physics, Mindanao State University, Marawi City\\
+Lanao del Sur, 9700,Philippines.%\\This line break forced with \textbackslash\textbackslash
+}%
+
+\date{\today}% It is always \today, today,
+             %  but any date may be explicitly specified
+
+\begin{abstract}
+An article usually includes an abstract, a concise summary of the work
+covered at length in the main body of the article. It is used for
+secondary publications and for information retrieval purposes. Edi wow \cite{dirac1981}.
+\end{abstract}
+
+\maketitle
+
+\begin{quotation}
+The ``lead paragraph'' is encapsulated with the \LaTeX\ 
+\verb+quotation+ environment and is formatted as a single paragraph before the first section heading. 
+(The \verb+quotation+ environment reverts to its usual meaning after the first sectioning command.) 
+Note that numbered references are allowed in the lead paragraph.
+%
+The lead paragraph will only be found in an article being prepared for the journal \textit{Chaos}.
+\end{quotation}
+
+\section{\label{sec:level1}Introduction}
+
+In 1928, Paul A.M. Dirac formulated down one of the most cornerstone achievement in relativistic quantum mechanics that describes the behavior of spin-1/2 particles -- the Dirac equation \cite{dirac1928quantum,dirac1981}. Dirac's equation successfully reconciled the principles of quantum mechanics with Einstein's theory of special relativity \cite{einstein1905} showing that spin is a natural consequence of combining quantum mechanics and relativity. The equation used $4\times4$ Dirac matrices that implied the existence of antiparticles and antimatter that later laid down the groundwork for the development of quantum field theory.
+
+Shortly after Dirac formulated his equation, H. Weyl proposed a simplified version of the Dirac equation for massless particles \cite{weyl1929}. Weyl pointed out that when the mass term in the Dirac equation vanishes, it can be decoupled into two separate Weyl equations. Initially, Weyl’s equation was not widely accepted because it described massless particles and at that time no such particles were known. Neutrinos were later thought to be Weyl fermions, however the discovery of neutrino oscillation implied that they have a small mass \cite{fukuda1998,ahmad2002,eguchi2003} and thus cannot be Weyl fermions. It is until recently that the theoretical concept of Weyl semimetals (WSMs) was verified experimentally in TaAs \cite{lv2015a,lv2015b,xu2015a,yang2015} followed by subsequent discoveries in numbers of materials like NbAs \cite{xu2015b}, TaP \cite{xu2016}, and NbP \cite{shekhar2015}. 
+
+The intriguing feature of WSMs is that near the Weyl nodes where the valence and conduction bands touch linearly, the low-energy excitations of the electrons resemble the elementary particles proposed in high-energy physics. This linearity is protected by the topological properties of the band structure, but it's not a fundamental property of the constituent particles. At higher energies, away from the Weyl points, the dispersion relation deviates from linearity due to the lattice effects. The periodic potential of the lattice introduces higher-order terms in the energy-momentum relation, causing the dispersion to become nonlinear and the Weyl fermions no longer behave as strictly massless particles. See Refs.~\cite{armitage2018} and \cite{rao2016} for more details.
+
+Recent studies draw analogy to general relativity (GR) like gravity, curved spacetime, black holes and while holes using WSMs with spatially varying tilts \cite{haller2023,konye2022,konye2023,sabsovich2022}. The tilting of the Weyl cone is mathematically analogous to the tilting of the light cone in GR. Depending on the strength of the tilt, there are type-I, type-II \cite{soluyanov2015} and an intermediate case between type-I and type-II called type-III \cite{huang2018} WSMs as shown in Figure \ref{fig:weyl-type}. Interestingly, the tilting of the Weyl cones create regions where the negative energy states of the original positive branch becomes empty while the positive energy energy states of the original negative branch becomes occupied. This process corresponds to the creation of electron-hole pairs, with one partner escaping as radiation and the other being trapped analogous to the physics of Hawking radiation \cite{sabsovich2022,huang2018,volovik2016,de2021}.
+
+\begin{figure}
+  \centering{\includegraphics[width=0.8\linewidth] {weyltype3.eps}}
+  \vspace*{8pt}
+  \caption{Types of Weyl semimetals: (a) untilted type I with point-like Fermi surface, (b) strongly tilted type-II with electron and hole pockets and (c) critically tilted type-III Weyl cone.}\label{fig:weyl-type}
+\end{figure}
+
+In this present work, we do not discuss the analog Hawking radiation nor the complexity of the changing gravitational field. Rather, we only deal with the dynamics of the wave packet by fixing the spacetime geometry and neglecting the back reaction. We first discuss, in Section \ref{sec:tilted-weyl-models}, the simple 1D models that exhibit "Weyl-like" behavior to construct the Weyl cones and to simulate the wave packet. These models serve as the basis for constructing Weyl cones and simulating wave packet dynamics under a hyperbolic tangent tilt profile. In Section \ref{sec:energy-disp-metric} we look at the connection of the dispersion relation for the Weyl Hamiltonian with spatially varying tilt to the Weyl fermions in curved spacetime for a metric $g^{\mu \nu}$. For simplicity, we use the Schwarzschild metric for the black hole written in Painleve-Gullstrand form. Taking into account the linearity of the energy dispersion relation close the the Weyl point, we show in Section \ref{sec:wave-packet-prop} how the tilt affects the motion of the wave packet by using fast Fourier transform and finite difference method. Finally, Section 5 provides a comprehensive discussion of the results obtained from our simulations and analysis.
+
+\section{\label{sec:tilted-weyl-models}Models for Titled Weyl Cone}
+
+In condensed matter physics, the low energy Hamiltonian captures the essential features of a system's low-energy excitations around the Fermi energy. For a Weyl continuum Hamiltonian with a tilted Weyl cone, the equation is given by,
+\begin{equation}
+  \label{eq:weyl-ham-tilt}
+  H=\mathbf{\sigma} \cdot \mathbf{k} - \sigma_0 (\mathbf{V} \cdot \mathbf{k}),
+\end{equation}
+where $\mathbf{k}$ is the momentum, $\mathbf{V}$ is the tilt of the system, $\sigma_0$ denotes the identity matrix and the components $\sigma_i$ are the standard $2 \times 2$ Pauli matrices. By diagonalizing the Hamiltonian in Eq.\ (\ref{eq:weyl-ham-tilt}), the energy dispersion relation is
+\begin{equation}
+  \label{eq:disp-ham-tilt}
+  E_{\pm} = \pm |\mathbf{k}| - \mathbf{V} \cdot \mathbf{k}.
+\end{equation}
+Here the plus and minus signs corresponds to the positive and negative energy states of the band structure respectively. Since the tilt term is proportional to the identity matrix, it does not affect the eigenstates which means that a wave packet initially at $E_+$ ($E_-$) will remain in the positive energy branch (negative energy branch) as it evolves in time. Note that the nodal tilt $V$ in Eq.\ (\ref{eq:disp-ham-tilt}) describes a Weyl node with constant tilt but for the propagation of wave packet, we will be interested in the spatially varying tilt.
+
+\begin{figure}[bt]
+  \centering{\includegraphics[width=0.8\linewidth] {energy.eps}}
+  \vspace*{8pt}
+  \caption{Energy dispersion plot of (a) $E_1$ and (b) $E_2$ with different tilt values. The red (blue) band corresponds to the positive (negative) energy branch. Fermi energy $E_F$ is highlighted by the black broken lines.}\label{fig:energy-disp}
+\end{figure}
+
+For simplicity, we focus only on the quantized direction along the $x$ direction and set $\textbf{k} \equiv k_x$. The low-energy Hamiltonian described in Eq.\ (\ref{eq:weyl-ham-tilt}) can then be consequently mapped to two lattice models
+\begin{equation}
+H_1 = (\sigma_x - V \sigma_0) \sin k,
+\end{equation}
+and
+\begin{equation}
+H_2 = (\sigma_x - V \sigma_0) \sin k + \sigma_z (1 - \cos k),
+\end{equation}
+which behave similarly at low $k$ values but differs at $k>0$. Using Taylor expansion about $k=0$, these two models reproduce Eq.\ (\ref{eq:weyl-ham-tilt}). The respective energy dispersion relations for $H_1$ and $H_2$ are
+\begin{equation}
+  \label{eq:energy-disp}
+E_{1\pm} = \pm \sin k - V \sin k,
+\end{equation}
+and
+\begin{equation}
+\label{eq:energy-disp2}
+E_{2\pm} = \pm \sqrt{\sin^2 k + (1 - \cos k)^2} - V \sin k.
+\end{equation}
+
+Near the Weyl nodes, the dispersion is linear and implies that the fermions behave like massless particles. However, the linear energy dispersion characteristic of Weyl fermions is not indefinite. As the momentum $k$ moves further away from the Weyl node within the periodic Brillouin zone, the higher order terms in the band structure become significant which breaks the linearity. Notice that in the first model (shown on Figure \ref{fig:energy-disp}(a)), there is a second Weyl node at the edge of the Brillouin zone whereas the second model (Figure \ref{fig:energy-disp}(b)) has only one Weyl node. At $V=0$, both models are symmetric but at $V=2$ the Weyl cone is overtilted creating electron and hole pockets which simulates the interior of a black hole discussed in Refs.~\onlinecite{volovik2016} and \onlinecite{zubkov2018}. 
+
+Between the interface of type-I and type-II WSMs is the position of the analog event horizon. Using $V=1$, one can see that the eigenenergies (red band) on the first model are zero for all values of $k$ causing the group velocity in this region to be zero as well. On the other hand, one can see that there are non-zero energy states for $k>0$ when we use the second model.
+
+In addition to the above mentioned difference on both models, the electron-hole pocket extends throughout the entire Brillouin zone on $E_1$ but is finite and localized on $E_2$. Interestingly, the red band of the overtilted type-II Weyl point of $E_1$ do not cross the zero-energy Fermi level if we go from $k=0$ to $k=3$ but it does on the latter model. These differences between the two models will have significant effects on the dynamics of our wave packet as also shown in Ref.~\onlinecite{konye2022}.
+
+\subsection{Event horizon in tanh tilt profile}
+
+Recent studies have demonstrated the tunability of Weyl nodes in real materials can be dynamically tuned, leading to transitions between type-I and type-II WSM. For instance, a study on $\mathrm{MnSb_2Te_4}$ showed that external perturbations can drive the system from a type-I towards a type-II WSM behavior \cite{tamanna2024}. Conversely, theoretical work on $\mathrm{MoTe_2}$ predicts that strain or correlation effects could induce a type-II to type-I WSM transition \cite{sun2015}. Furthermore, Ref.~\onlinecite{kong2017} proposed a tunable two-band lattice model in an ultracold atom setup where the tilt of the Weyl nodes can be controlled through the Hamiltonian parameters, enabling simulations of type-I, type-II, and even a hybrid type-1.5 WSM.
+
+To model a realistic analog black hole geometry with a smooth event horizon, we implement a position-dependent tilt profile using a hyperbolic tangent function:
+\begin{equation}
+V(x) = V_{\text{max}} \cdot \frac{\tanh\left(\frac{x - x_h}{a}\right) - \epsilon}{1 - \epsilon}
+\end{equation}
+where $V_{\text{max}} = 2$ is the maximum tilt value, $x_h$ is the horizon position, $a$ is the transition width parameter controlling the spatial scale over which the tilt of the Weyl cone varies appreciably, and $\epsilon = \tanh\left(\frac{x_0 - x_h}{a}\right)$ is the normalization factor with $x_0$ representing the initial wavepacket position.
+
+This normalization ensures that the tilt profile begins at zero at the initial wavepacket position $x_0$, representing an untilted region where the wavepacket is initialized, while the denominator ensures the maximum tilt reaches exactly $V_{\text{max}}$ at large $x$. The profile creates a smooth transition from a type-I WSM ($V < 1$) to a type-II WSM ($V > 1$), with the analog event horizon located at the point where $V(x) = 1$. 
+
+In the simulation, the analog event horizon naturally appears when $V=1$ which occurs at $x\approx 1884.5$ for our parameter choices providing sufficient space on both sides of the horizon for clear observation of wavepacket dynamics. As mentioned above, the parameter $a$ in our model can be interpreted as a spatial scale over which the tilt of the Weyl cone varies appreciably. While $a$ is not directly measurable in experiments, it serves as a phenomenological parameter that captures the smoothness of tilt transitions. We set $a = 700$ to ensure the tilt varies slowly compared to the width of the wave packet. This choice  is motivated by the desire to maintain approximate adiabaticity in the wave packet propagation. Further work may investigate the sensitivity of our results to different values of $a$, potentially guided by specific experimental realizations in WSMs.
+
+\section{\label{sec:energy-disp-metric}Energy Dispersion from the Metric}
+
+In the following, we explore the relation between the tilted WSM  and black holes. Importantly, we show the equivalence of the dispersion relation for a metric $g^{\mu \nu}$ following the sign convention (--+++) to the dispersion of a Weyl system. 
+
+The untilted Weyl cone corresponds to a light cone in flat spacetime while the tilted and overtilted Weyl cone corresponds to a light cone that moves closer to a black hole  \cite{sabsovich2022}. Using these analogies, we can map the titled Weyl Hamiltonian in Eq.\ (\ref{eq:weyl-ham-tilt}) to the spacetime metrics where the motion of massless particles is described by the null geodesics
+\begin{equation}
+ds^2 = g_{\mu \nu} dx^{\mu} dx^{\nu} = 0.
+\end{equation}
+For massless Weyl fermions, the dispersion relation follows from the Dirac equation in curved spacetime
+\begin{equation}
+  \label{eq:dirac-spacetime}
+g^{\mu \nu} p_{\mu} p_{\nu}= 0,
+\end{equation}
+where $g^{\mu \nu}$ is the contravariant form of the metric tensor and $p_{\mu} = (E,k)$ is the energy-momentum four-vector. The spacetime metric relates to black hole using Einstien's field equation \cite{einstein1915} and for our purpose, the Schwarzschild metric (see Ref.~\onlinecite{blinn2017} for detailed derivation) written in Painleve-Gullstrand form which satisfies:
+\begin{equation}
+  \label{eq:PG-schwarzschild-metric}
+  ds^2=-(1 - V^2)dt^2 - 2tdxdt + dx^2,
+\end{equation}
+works well. The $V^2 - 1=0$ term can be considered as the tilt and in this sense, an event horizon exists at $V=1$ \cite{kedem2020}. In matrix form, Eq.\ (\ref{eq:PG-schwarzschild-metric}) can be written as
+\begin{equation}
+g^{\mu \nu} = \begin{pmatrix} -1 & \quad -V  \\ -V & \quad  1-V^2 \end{pmatrix},
+\end{equation}
+and so we can rewrite Eq.\ (\ref{eq:dirac-spacetime}) as
+\begin{equation}
+  \label{eq:dirac-disp}
+  -E^2 - 2VEk + (1 - V^2)k^2=0.
+\end{equation}
+The two solutions for Eq.~(\ref{eq:dirac-disp}) gives the dispersion relation of a tilted Weyl cone
+\begin{equation}
+E_{\pm} = \pm k - Vk,
+\end{equation}
+which is physically equivalent to Eq.\ (\ref{eq:disp-ham-tilt}) derived from the Weyl Hamiltonian.
+
+\section{\label{sec:wave-packet-prop}Wave Packet Propagation}
+
+The initial wave packet is constructed as a normalized Gaussian wave packet with an initial momentum:
+\begin{equation}
+\psi(x,0) = \mathcal{N} \exp\left(-\frac{(x-x_0)^2}{2\sigma^2}\right) \exp(ik_0(x-x_0))
+\label{eq:initial_wavefunction}
+\end{equation}
+where $\mathcal{N}$ is the normalization constant, $\sigma = 20$ is the wave packet width, and $k_0 \in \{0.0, 0.1, 0.2\}$ represents different initial momentum values corresponding to the near-Weyl-node relativistic regime. The spatial domain extends over $L = 4000$ grid points with uniform spacing $\Delta x = 1$. The center of the wave packet is tracked using
+\begin{equation}
+    \langle x \rangle (t) = \frac{\int x|\psi(x,t)|^2 dx}{\int |\psi(x,t)|^2dx}
+\end{equation}
+which represents the expectation value of position at time $t$.
+
+In this work, periodic boundary conditions are implemented to ensure well-defined spatial derivatives at all grid points and to prevent artificial boundary reflections. However, the simulation domain is chosen sufficiently large such that the wave packet and its scattered components remain well-separated from the boundaries for the entire simulation duration. As a result, the wave packet never interacts with the boundaries, and the periodic conditions remain inactive. This design choice prevents artificial wrap-around effects and ensures that the computed transmission and reflection properties are free from boundary artifacts.
+
+To study the dynamics of Weyl fermions in curved spacetime analogs, we employ multiple complementary approaches. The wave packet evolution is computed using two methods: a numerical simulation based on a fourth-order Runge–Kutta (RK4) scheme and a semiclassical analysis using the Wentzel–Kramers–Brillouin (WKB) approximation. To quantify the interaction with the analog event horizon, we extract scattering observables from the spatial distribution of the final wave packet and characterize the temporal dynamics through dwell time measurements. Together, they provide a consistent and comprehensive description of wave packet propagation near the analog event horizon.
+
+\subsection{Runge–Kutta method}
+In the long-wavelength limit ($k \ll 1$), we can approximate $\sin(k) \approx k$ using Taylor series expansion. Thus, the energy dispersion from Eq.~(\ref{eq:energy-disp}) in real space becomes
+\begin{equation}
+\label{eq:linear_dispersion}
+    E_1 \approx \pm(1 - V) k.
+\end{equation}
+
+In our simulations we considered only the positive branch of the dispersion relation. The two branches correspond to opposite group velocities, so the negative branch produces dynamics that are identical in form but mirror the positive branch in direction. Since the focus of this work is on the qualitative behavior of wave packet propagation rather than on the symmetry between opposite directions, restricting to the positive branch is sufficient and avoids redundancy in the analysis.
+
+To describe the wave packet dynamics, we start by using the dispersion relation from Eq.\ (\ref{eq:linear_dispersion}) by applying the standard correspondence $k \rightarrow -i \hbar \partial_x$. From this, we obtain the effective Hamiltonian operator for the first model
+\begin{equation}
+\label{eq:hamiltonian1_op}
+\hat{H}_1 = (1 - V)(-i\hbar\partial_x).
+\end{equation}
+This operator is then used in the time-dependent Schrödinger equation (TDSE)
+\begin{equation}
+i\hbar \partial_t \psi (x,t) =\hat{H} \psi(x,t).
+\end{equation}
+Substituting the Hamiltonian from Eq.~\eqref{eq:hamiltonian1_op} and dividing both sides by $i$ gives
+\begin{equation}
+\label{eq:TDSE_1}
+\partial_t \psi = -\alpha \partial_x \psi
+\end{equation}
+where $\alpha = 1-V$ and $\hbar =1$.
+
+To discretize the spatial derivatives in Eq.~(\ref{eq:TDSE_1}), we employ the finite difference method, more specifically the central difference scheme by approximating the derivatives on a discrete grid
+\begin{equation}
+\label{eq:spatial_derivative}
+\partial_x \psi \approx \frac{\psi_{i+1} - \psi_{i-1}} {2 \Delta x},
+\end{equation}
+where $\psi_{i+1}$ ($\psi_{i-1}$) is the value of the wave function at the next (previous) grid point and $\Delta x$ is the spatial step size between the adjacent grid points. Plugging in Eq.\ (\ref{eq:spatial_derivative}) into the right-hand side of Eq.\ (\ref{eq:TDSE_1}), the governing equation takes the form
+\begin{equation}
+\partial_t \psi =  -\alpha \left( \frac{\psi_{i+1} - \psi_{i-1}}{2 \Delta x} \right).
+\end{equation}
+
+We can use the same principle for the second model $E_2$ by extending the Taylor series expansion to include higher-order terms $\sin k \approx k - \frac{k^3}{3!}$ and $\cos k \approx 1 - \frac{k^2}{2}$ and using the binomial expansion to get
+\begin{equation}
+\label{eq:dispersion2_real_space}
+E_2  = -i \hbar (1-V) \partial_x + i \hbar^3 \left(\frac{1}{8} + \frac{V}{6}\right)\partial^3_x.
+\end{equation}
+
+Substituting Eq. (\ref{eq:dispersion2_real_space}) to the TDSE yields
+\begin{equation}
+i \partial_t \psi = -i (1-V(x)) \partial_x \psi + i  \left(\frac{1}{8} + \frac{V}{6}\right)\partial^3_x \psi,
+\end{equation}
+where the central difference approximation for the 3rd derivative is
+\begin{equation}
+\partial^3_x \psi \approx \frac{\psi_{i+2} - 2 \psi_{i+1} + 2 \psi_{i-1} - \psi_{i-2}} {2 \Delta x^3}.
+\end{equation}
+
+Thus, the full expression for the enhanced dispersion model $E_2$ is
+\begin{equation}
+\partial_t \psi =  -\alpha \left(\frac{\psi_{i+1} - \psi_{i-1}}{2 \Delta x} \right) + \beta  \left(\frac{\psi_{i+2} - 2\psi_{i+1 } + 2\psi_{i-1} - \psi_{i-2}}{2 \Delta x^3} \right),
+\end{equation}
+where $\beta= \left(\frac{1}{8} + \frac{V}{6} \right)$.
+
+To advance the system forward in time, we employ the RK4 method:
+\begin{equation}
+\frac{d\boldsymbol{\psi}}{dt} = F(\boldsymbol{\psi}),
+\end{equation}
+where $F(\boldsymbol{\psi})$ represents the discrete spatial derivative operators for the wave equation derived from our respective dispersion relations ($E_1$ or $E_2$). The RK4 method approximates the solution by evaluating this function at four different points within each time step. The four intermediate slopes are computed as
+\begin{align}
+\mathbf{f}_1 &= F(\boldsymbol{\psi}^n), \\[6pt]
+\mathbf{f}_2 &= F\left(\boldsymbol{\psi}^n + \tfrac{\Delta t}{2}\mathbf{f}_1 \right), \\[6pt]
+\mathbf{f}_3 &= F\left(\boldsymbol{\psi}^n + \tfrac{\Delta t}{2}\mathbf{f}_2 \right), \\[6pt]
+\mathbf{f}_4 &= F\left(\boldsymbol{\psi}^n + \Delta t\, \mathbf{f}_3 \right),
+\end{align}
+where $\mathbf{f}_1, \mathbf{f}_2, \mathbf{f}_3, \mathbf{f}_4$ are the slope estimates at the beginning, midpoint (twice), and end of the time step, respectively. The wavefunction at the next time step $\Delta t$ is then computed as:
+\begin{equation}
+\boldsymbol{\psi}^{n+1} = \boldsymbol{\psi}^n + \frac{\Delta t}{6}\left(\mathbf{f}_1 + 2\mathbf{f}_2 + 2\mathbf{f}_3 + \mathbf{f}_4\right).
+\end{equation}
+
+
+\subsection{WKB approximation}
+
+As a complementary approach to the time-dependent RK4 simulations, we also examined the wave packet dynamics within the semiclassical WKB approximation. This method provides an analytical framework for understanding how spatial variations in the tilt profile $V(x)$ influence the propagation of quasiparticles in tilted Weyl semimetals.
+
+The WKB method is built upon the ansatz for the wavefunction,
+\begin{equation}
+\label{eq:WKB_ansatz}
+\psi(x) = A(x) e^{i S(x)},
+\end{equation}
+where $A(x)$ is a slowly varying amplitude. The phase of the wavefunction, given by the classical action
+\begin{equation}
+S(x) = \int^{x}_{x_0} k(x') dx',
+\end{equation}
+is constructed via numerical intergration outward from $x_0$ using the trapezoidal rule. The local wavenumber $k(x)$ satisfies the action $k(x)=\partial_x S$, and is determined by solving the Hamilton–Jacobi equation
+\begin{equation}
+E = H(x,k),
+\end{equation}
+where $H(x,k)$ is the classical Hamiltonian corresponding to the energy dispersion of the effective model. The group velocity, which dictates the wave packet's trajectory, can be solve by differentiating the energy dispersion
+\begin{equation}
+v_g = \partial_k E\bigg|_{k = k(x)}.
+\end{equation}
+In order to prevent numerical divergence, the magnitude of the group velocity is clamped to a small, positive minimum value near the horizon where $v_g \rightarrow 0$.
+
+To determine the spatial variation of the amplitude $A(x)$, we make use of the probability current density. For any 1D wavefunction $\psi(x)$, the probability current is defined as
+\begin{equation}
+\label{eq:prob_current}
+j(x) = \frac{\hbar}{m} \text{Im}\left(\psi^* \partial_x \psi \right).
+\end{equation}
+Solving for the spatial derivative gives us
+\begin{equation}
+\label{eq:spatial_derivative_ansatz}
+\partial_x \psi = \left(\frac{dA}{dx} + \frac{i}{\hbar} A\frac{dS}{dx} \right)e^{iS(x)/ \hbar},
+\end{equation}
+where the complex conjugate of the wavefunction is
+\begin{equation}
+\label{eq:conjugate_ansatz}
+\psi^* = Ae^{-iS(x)/ \hbar}.
+\end{equation}
+Plugging Eqs.~(\ref{eq:spatial_derivative_ansatz}) and (\ref{eq:conjugate_ansatz}) to Eq.~(\ref{eq:prob_current}) yields
+\begin{equation}
+j(x) = \frac{\hbar}{m} \text{Im}\left(Ae^{-iS(x)/ \hbar} \cdot \left(\frac{dA}{dx} + \frac{i}{\hbar}A\frac{dS}{dx} \right)e^{iS(x)/ \hbar} \right),
+\end{equation}
+where the exponential factors cancel out. This simplifies to
+\begin{equation}
+\label{eq:prob_current_2}
+j(x) = \frac{\hbar}{m} \text{Im}\left(A \frac{dA}{dx} \right) + \frac{\hbar}{m} \text{Im}\left(\frac{i}{\hbar}A^2 \frac{dS}{dx} \right),
+\end{equation}
+where the first term is purely real because A(x) is real. The imaginary part of a real number is zero so that $\text{Im}\left(A \frac{dA}{dx} \right) = 0$. On the other hand, the second term has a factor of $i$ making it purely imaginary. The imaginary part of an imaginary number is itself, thus $\text{Im}\left(\frac{i}{\hbar} A^2 \frac{dS}{dx} \right) = \frac{1}{\hbar} A^2 \frac{dS}{dx}$. Thus, we can simplify Eq.~(\ref{eq:prob_current_2}) to
+\begin{equation}
+\label{eq:prob_current_3}
+j(x) = \frac{1}{m} A^2 \frac{dS}{dx}.
+\end{equation}
+
+Recognizing that in the Hamilton-Jacobi formulation of classical mechanics, $\frac{dS}{dx}$ is the classical momentum $p$. In the semiclassical (WKB) limit, we treat the wave packet as a point-like particle. The velocity is the rate of change of its position, which is the group velocity. From classical mechanics, we also know that the particle velocity is $v=\frac{p}{m}$. Since we work on natural units where $\hbar = 1$, thus $p=k$ and that
+\begin{equation}
+v=\partial_p E = \partial_k E,
+\end{equation}
+where the right-hand side by definition is the group velocity $v_g$. Thus, the classical particle $v$ is numerically identical to the group velocity $v_g$ derived from the dispersion relation. Therefore, we make the identification
+\begin{equation}
+\frac{1}{m} \frac{dS}{dx} = \frac{p}{m} = v_g
+\end{equation}
+
+Substituting this into Eq.~(\ref{eq:prob_current_3}) and noting that the probability density $\rho(x) = |\psi(x)|^2 = [A(x)]^2$ gives us
+\begin{equation}
+j(x) = v_g|\psi|^2.
+\end{equation}
+
+For a stationary state, $|\psi|^2$ is time-independent so that $\partial_t \rho=0$ which makes the continuity equation 
+\begin{equation}
+\partial_t \rho + \partial_x j = 0
+\end{equation}
+reduce to $\partial_x j=0$. Since current is conserved,
+\begin{equation}
+j(x) = v_g |\psi(x)|^2 = \text{constant},
+\end{equation}
+which constrains the amplitude, yielding
+\begin{equation}
+A(x) = \frac{C}{\sqrt{|v_g|}},
+\end{equation}
+where $C$ is a normalization constant we will set to 1.
+
+Thus, the WKB wavefunction of Eq.~(\ref{eq:WKB_ansatz}) takes the form of
+\begin{equation}
+\psi_{\mathrm{WKB}}(x) = \frac{C}{\sqrt{|v_g|}}\exp\left(-\frac{(x - x_0)^2}{2\sigma^2}\right)\exp\left(i \int_{x_0}^{x} k(x'), dx'\right),
+\end{equation}
+where the Gaussian envelope centered at $x_0$ with width $\sigma$ ensures spatial localization of the wave packet.
+
+The two effective models differ only in their underlying dispersion relations that dictate the functional forms of $k(x)$ and $v_g$. Although both reduce to the same low-energy form as $k \rightarrow 0$, their global behaviors are qualitatively distinct. In the first model (Eq.~(\ref{eq:energy-disp})), the local wavenumber admits a closed-form expression,
+\begin{equation}
+k(x) = \arcsin(E / (1 - V(x))),
+\end{equation}
+while the second model (Eq.~(\ref{eq:energy-disp2})) requires numerical solution at each spatial point
+\begin{equation}
+f(k) = \sqrt{\sin^2 k + (1-\cos k)^2} - V(x)\sin k - E = 0,
+\end{equation}
+where $E$ is the fixed energy eigenvalue of the wave packet. Using the Newton-Raphson method, the iterative scheme follows
+\begin{equation}
+k_{n+1} = k_n - \frac{f(k_n)}{f'(k_n)},
+\end{equation}
+where the derivative $f'(k) = \partial E_2/\partial k$ is
+\begin{equation}
+f'(k) = \frac{\sin k}{\sqrt{\sin^2 k + (1-\cos k)^2}} - V(x)\cos k.
+\end{equation}
+Starting from an initial guess $k_0 \sim \mathcal{O}(E)$ at the wave packet center, the solution propagates spatially using $k(x_{j\pm1})$ as the initial guess for neighboring points. Convergence is then achieved when $|k_{n+1} - k_n| < 10^{-12}$.
+
+Despite this added complexity, the general WKB structure where the dynamics is governed by the group velocity $v_g(x)$ and the integrated phase $S(x)$ remains intact, providing a direct means of comparing the two models.
+
+\subsection{Scattering analysis}
+
+To quantify the scattering properties at the horizon, we analyze the spatial distribution of the probability density of the wave packet $|\psi(x,t_f)|^2$ at the time of horizon arrival.
+
+Due to the spatially varying tilt $V(x)$, the effective Hamiltonian is non-Hermitian. As a result, probability is not conserved during wave packet evolution
+\begin{equation}
+    \frac{dP}{dt} = \frac{d}{dt} \int |\psi(x,t)|^2 dx \neq 0,
+\end{equation}
+where $P(t)$ denotes the probability density at time $t$. To preserve the physical effect of non-Hermiticity, no artifical normalization of $\psi$ is performed during the simulation. The total probability $P(t)$ is instead monitored directly, allowing the intrinsic gain or loss dynamics to manifest naturally.
+
+To identify where the probability dissipation occurs during propagation, we analyze the instantaneous loss rate via finite differences of $P(t)$ at each time step. The position of maximum absorption is determined by identfying the time $t_{\text{max}}$ at which $\frac{dP}{dt}$ reaches its minimum value and evaluating the wave packet cented $\langle x \rangle(t_{\text{max}})$ at that instant.
+
+The system is partitioned into reflection ($x<x_h$) and transmission ($x>x_h$) regions relative to the horizon. For each momentum $k_0$, we compute the corresponding reflected and transmitted probabilities as
+\begin{align}
+    P_{\text{ref}} &= \int_{x<x_h} |\psi(x,t_f)|^2 dx, \\
+    P_{\text{trans}} &= \int_{x>x_h} |\psi(x,t_f)|^2 dx.
+\end{align}
+
+From these, the scattering coefficients are defined to the initial probability $P_{\text{init}}=1$ as
+\begin{align}
+    R &= \frac{P_{\text{ref}}}{P_{\text{init}}}, \\
+    T &= \frac{P_{\text{trans}}}{P_{\text{init}}}.
+\end{align}
+
+Deviation from unitary is quantified by the probability loss term by
+\begin{equation}
+    L=1-(R+T)=\frac{P_{\text{init}} - P(t_f)}{P_{\text{init}}},
+\end{equation}
+where $P(t_f)=P_{\text{ref}} + P_{\text{trans}}$ is the total probability at horizon arrival. 
+
+Finally, unitary is verified by checking that $R + T \approx 1$ to within numerical precision. This serves as a consistency check for both the time evolution algorithm and the spatial integration. Here, $L>0$ indicates absorption of probability density while $L<0$ would correspond to amplification. Together, these satisfy the relation $R+T+L=1$.
+
+\subsection{Dwell time calculation}
+
+In addition to scattering probabilities, we compute the dwell time $\tau$ for which the wave packet remained in the vicinity of the horizon during its evolution. The instantaneous position of the wave packet is characterized by its center of mass $\langle x \rangle (t)$ which represents the expectation value of position at time $t$.
+
+The dwell region is defined as a spatial window centered at the horizon
+\begin{equation}
+    D={x \mid|x-x_h|<\delta}
+\end{equation}
+where $\delta=50$ is the dwell threshold for the horizon region. At each time step, we track whether the wave packet center lies within the dwell region. The total dwell time is obtained as
+\begin{equation}
+    \tau=\sum_j\left(t_{out}^{(j)} - t_{in}^{(j)} \right),
+\end{equation}
+summing over all dwelling interactions. If the packet remains within $D$ at the final simulation time, the last interval is closed at $t=t_f$.
+
+\section{Conclusion and Discussion}
+
+
+
+\begin{acknowledgments}
+We wish to acknowledge the support of the author community in using
+REV\TeX{}, offering suggestions and encouragement, testing new versions,
+\dots.
+\end{acknowledgments}
+
+\section*{Data Availability Statement}
+
+AIP Publishing believes that all datasets underlying the conclusions of the paper should be available to readers. Authors are encouraged to deposit their datasets in publicly available repositories or present them in the main manuscript. All research articles must include a data availability statement stating where the data can be found. In this section, authors should add the respective statement from the chart below based on the availability of data in their paper.
+
+\begin{center}
+\renewcommand\arraystretch{1.2}
+\begin{tabular}{| >{\raggedright\arraybackslash}p{0.3\linewidth} | >{\raggedright\arraybackslash}p{0.65\linewidth} |}
+\hline
+\textbf{AVAILABILITY OF DATA} & \textbf{STATEMENT OF DATA AVAILABILITY}\\  
+\hline
+Data available on request from the authors
+&
+The data that support the findings of this study are available from the corresponding author upon reasonable request.
+\\\hline
+Data available in article or supplementary material
+&
+The data that support the findings of this study are available within the article [and its supplementary material].
+\\\hline
+Data openly available in a public repository that issues datasets with DOIs
+&
+The data that support the findings of this study are openly available in [repository name] at http://doi.org/[doi], reference number [reference number].
+\\\hline
+Data openly available in a public repository that does not issue DOIs
+&
+The data that support the findings of this study are openly available in [repository name], reference number [reference number].
+\\\hline
+Data sharing not applicable – no new data generated
+&
+Data sharing is not applicable to this article as no new data were created or analyzed in this study.
+\\\hline
+Data generated at a central, large scale facility
+&
+Raw data were generated at the [facility name] large scale facility. Derived data supporting the findings of this study are available from the corresponding author upon reasonable request.
+\\\hline
+Embargo on data due to commercial restrictions
+&
+The data that support the findings will be available in [repository name] at [DOI link] following an embargo from the date of publication to allow for commercialization of research findings.
+\\\hline
+Data available on request due to privacy/ethical restrictions
+&
+The data that support the findings of this study are available on request from the corresponding author. The data are not publicly available due [state restrictions such as privacy or ethical restrictions].
+\\\hline
+Data subject to third party restrictions
+&
+The data that support the findings of this study are available from [third party]. Restrictions apply to the availability of these data, which were used under license for this study. Data are available from the authors upon reasonable request and with the permission of [third party].
+\\\hline
+\end{tabular}
+\end{center}
+
+\appendix
+
+\section{Appendixes}
+
+To start the appendixes, use the \verb+\appendix+ command.
+This signals that all following section commands refer to appendixes
+instead of regular sections. Therefore, the \verb+\appendix+ command
+should be used only once---to set up the section commands to act as
+appendixes. Thereafter normal section commands are used. The heading
+for a section can be left empty. For example,
+\begin{verbatim}
+\appendix
+\section{}
+\end{verbatim}
+will produce an appendix heading that says ``APPENDIX A'' and
+\begin{verbatim}
+\appendix
+\section{Background}
+\end{verbatim}
+will produce an appendix heading that says ``APPENDIX A: BACKGROUND''
+(note that the colon is set automatically).
+
+If there is only one appendix, then the letter ``A'' should not
+appear. This is suppressed by using the star version of the appendix
+command (\verb+\appendix*+ in the place of \verb+\appendix+).
+
+\section{A little more on appendixes}
+
+Observe that this appendix was started by using
+\begin{verbatim}
+\section{A little more on appendixes}
+\end{verbatim}
+
+Note the equation number in an appendix:
+\begin{equation}
+E=mc^2.
+\end{equation}
+
+\subsection{\label{app:subsec}A subsection in an appendix}
+
+You can use a subsection or subsubsection in an appendix. Note the
+numbering: we are now in Appendix~\ref{app:subsec}.
+
+\subsubsection{\label{app:subsubsec}A subsubsection in an appendix}
+Note the equation numbers in this appendix, produced with the
+subequations environment:
+\begin{subequations}
+\begin{eqnarray}
+E&=&mc, \label{appa}
+\\
+E&=&mc^2, \label{appb}
+\\
+E&\agt& mc^3. \label{appc}
+\end{eqnarray}
+\end{subequations}
+They turn out to be Eqs.~(\ref{appa}), (\ref{appb}), and (\ref{appc}).
+
+\nocite{*}
+\bibliography{aipsamp}% Produces the bibliography via BibTeX.
+
+\end{document}
+%
+% ****** End of file aipsamp.tex ******
